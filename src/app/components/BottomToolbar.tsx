@@ -99,7 +99,7 @@ function BottomToolbar({
         </button>
       </div>
 
-      <div className="flex flex-row items-center gap-1">
+      {/* <div className="flex flex-row items-center gap-1">
         <input
           id="audio-playback"
           type="checkbox"
@@ -127,10 +127,10 @@ function BottomToolbar({
         <label htmlFor="logs" className="flex items-center cursor-pointer">
           Logs
         </label>
-      </div>
+      </div> */}
 
       <div className="flex flex-row items-center gap-2">
-        <div>Codec:</div>
+        {/* <div>Codec:</div> */}
         {/*
           Codec selector – Lets you force the WebRTC track to use 8 kHz 
           PCMU/PCMA so you can preview how the agent will sound 
@@ -139,7 +139,7 @@ function BottomToolbar({
           which our App-level logic picks up and applies via a WebRTC monkey
           patch (see codecPatch.ts).
         */}
-        <select
+        {/* <select
           id="codec-select"
           value={codec}
           onChange={handleCodecChange}
@@ -148,7 +148,7 @@ function BottomToolbar({
           <option value="opus">Opus (48 kHz)</option>
           <option value="pcmu">PCMU (8 kHz)</option>
           <option value="pcma">PCMA (8 kHz)</option>
-        </select>
+        </select> */}
       </div>
     </div>
   );
