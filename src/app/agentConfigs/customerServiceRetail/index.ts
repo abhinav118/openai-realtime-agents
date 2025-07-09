@@ -1,22 +1,14 @@
-import { authenticationAgent } from './authentication';
-import { returnsAgent } from './returns';
-import { salesAgent } from './sales';
-import { simulatedHumanAgent } from './simulatedHuman';
+import { simpleHandoffScenario } from './simpleHandoff';
+import { customerServiceRetailScenario } from './customerServiceRetail';
+import { chatSupervisorScenario } from './chatSupervisor';
 
-// Cast to `any` to satisfy TypeScript until the core types make RealtimeAgent
-// assignable to `Agent<unknown>` (current library versions are invariant on
-// the context type).
-(authenticationAgent.handoffs as any).push(returnsAgent, salesAgent, simulatedHumanAgent);
-(returnsAgent.handoffs as any).push(authenticationAgent, salesAgent, simulatedHumanAgent);
-(salesAgent.handoffs as any).push(authenticationAgent, returnsAgent, simulatedHumanAgent);
-(simulatedHumanAgent.handoffs as any).push(authenticationAgent, returnsAgent, salesAgent);
+import type { RealtimeAgent } from '@openai/agents/realtime';
 
-export const customerServiceRetailScenario = [
-  authenticationAgent,
-  returnsAgent,
-  salesAgent,
-  simulatedHumanAgent,
-];
+// Map of scenario key -> array of RealtimeAgent objects
+export const allAgentSets: Record<string, RealtimeAgent[]> = {
+  simpleHandoff: simpleHandoffScenario,
+  customerServiceRetail: customerServiceRetailScenario,
+  chatSupervisor: chatSupervisorScenario,
+};
 
-// Name of the company represented by this agent set. Used by guardrails
-export const customerServiceRetailCompanyName = 'Snowy Peak Boards';
+export const defaultAgentSetKey = 'customerServiceRetail';
